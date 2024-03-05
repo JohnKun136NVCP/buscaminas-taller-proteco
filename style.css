@@ -1,25 +1,39 @@
-.grid{
+.grid {
     height: 400px;
     width: 400px;
-    display: flex;
-    flex-wrap: wrap;
-    background-color: grey;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    background-color: #ddd;
+    gap: 2px;
 }
 
-.grid div { 
+.grid div {
     height: 40px;
     width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #eee;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+    border: 1px solid #ddd;
 }
 
-.checked{
-    background-color: blueviolet;
+.grid div.checked {
+    background-color: #c1c1c1;
+}
+
+.grid div.flag {
+    background-color: #ddd;
 }
 
 .bomb {
-    background-color: orange;
+    background-color: #ffcc00;
+    color: #fff;
 }
 
-h1{
-    color:  rgb(rgb(124, 1, 1), green, blue);
+h1 {
+    color: #333;
 }
-
