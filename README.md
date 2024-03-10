@@ -15,5 +15,5 @@ Este taller, realizado en la semana de talleres temáticos enfocados a los video
 <br>
 
 ### Taller realizado por:
-#### David Elias González García - Generación 45 de PROTECO
-#### Juan Ángeles - Generación 41 de PROTECO
+#### [David Elias González García](https://github.com/se2510) - Generación 45 de PROTECO
+#### [Juan Ángeles](https://github.com/JohnKun136NVCP ) - Generación 41 de PROTECO

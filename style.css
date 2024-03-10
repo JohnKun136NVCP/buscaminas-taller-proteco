@@ -3,7 +3,6 @@
     width: 400px;
     display: grid;
     grid-template-columns: repeat(10, 1fr);
-    background-color: #ddd;
     gap: 2px;
 }
 

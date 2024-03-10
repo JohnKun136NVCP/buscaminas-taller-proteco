@@ -10,11 +10,11 @@ document.addEventListener('DOMContentLoaded', ()=>{
     // Creando el tablero 
     function createBoard(){
         // Creando un arreglo de bombas que se pongan aleatoriamente.
-        const bombsArray = Array(bombAmount).fill('bomb') // Con el método Array estamos creando un array del tamaño del numero de bombas, y llenamos cada índice con la cadena de 'bomb'
+        const bombsArray = Array(bombAmount).fill('bomb'); // Con el método Array estamos creando un array del tamaño del numero de bombas, y llenamos cada índice con la cadena de 'bomb'
+        console.log(bombsArray);
         const emptyArray = Array(width*width - bombAmount).fill('valid');
         const gameArray = emptyArray.concat(bombsArray); // Concatenando los dos arreglos
         const shuffledArray = gameArray.sort(()=> Math.random() - 0.5) // Haciéndolo aleatorio
-
 
         for(let i=0;  i< width*width; i++){
             const square = document.createElement('div');
@@ -22,26 +22,23 @@ document.addEventListener('DOMContentLoaded', ()=>{
             square.classList.add(shuffledArray[i]);
             grid.appendChild(square);
             squares.push(square);
-
             // Normal click
             square.addEventListener('click', function(e){
                 click(square)
             })
-
-            // control y click izquierdo
+            // control y click  izquierdo
             square.oncontextmenu = function(e){
-                e.preventDefault();
-                addFlag(square);
+                // Asigna una función al evento de clic derecho en la casilla.
+                e.preventDefault(); // Evita que se muestre el menú contextual predeterminado del navegador al hacer clic derecho.
+                addFlag(square); // Llama a la función `addFlag` y le pasa la casilla como argumento, para manejar la colocación y eliminación de banderas en la casilla.
             }
         }
-
         // Añadiendo números
         for (let i = 0; i<squares.length; i++){
             let total = 0;
             const isLeftEdge = (i%width === 0); // Para verificar los bordes
             const isRightEdge = (i%width === width -1);
-
-            if (squares[i].classList.contains('valid')){
+            if (squares[i].classList.contains('valid')){ // Osea si no es una bomba
                 //Checa a la izquierda de la casilla 
                 if(i>0 && !isLeftEdge && squares[i-1].classList.contains('bomb')) 
                     total++;
@@ -61,14 +58,13 @@ document.addEventListener('DOMContentLoaded', ()=>{
                 if(i<(width*width - width) && !isLeftEdge && squares[i-1 + width].classList.contains('bomb'))
                     total++
                 // Checando la casilla abajo a la derecha.
-                if(i<(width*width - width - 2) && !isRightEdge && squares[i+1+width].classList.contains('bomb'))
+                if(i<(width*width - width - 1) && !isRightEdge && squares[i+1+width].classList.contains('bomb'))
                     total++
                 // Checando la casilla de abajo
                 if(i<(width*width-width-1) && squares[i+width].classList.contains('bomb'))
                     total++
                 squares[i].setAttribute('data',total);
             }
-
         }
     }
 
@@ -149,7 +145,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
                 const newSquare = document.getElementById(newId);
                 click(newSquare)
             }
-            if (currentId < (width*width - width -2) && !isRightEdge){
+            if (currentId < (width*width - width -1) && !isRightEdge){
                 const newId = squares[parseInt(currentId)+1+width].id; // Id cuadrado de abajo a la derecha
                 const newSquare = document.getElementById(newId);
                 click(newSquare)
@@ -163,7 +159,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     }
 
     // Función del Game Over :0
-    function gameOver(square){
+    function gameOver(){
         console.log('Terminó el juego C:');
         isGameOver=true;
 
